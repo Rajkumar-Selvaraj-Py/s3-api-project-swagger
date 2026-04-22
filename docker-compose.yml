@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  localstack:
+    image: localstack/localstack:3.0
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+
+  app:
+    build: .
+    ports:
+      - "5001:5000"
+    depends_on:
+      - localstack
